@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Commands;
 using api.DTOs.UserDTOs;
-using api.Models;
+using Domain.Models;
 
 namespace api.Mappers
 {

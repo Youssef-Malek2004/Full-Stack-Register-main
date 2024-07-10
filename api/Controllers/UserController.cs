@@ -7,7 +7,7 @@ using api.Commands;
 using api.Data;
 using api.DTOs.UserDTOs;
 using api.Mappers;
-using api.Models;
+using Domain.Models;
 using api.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

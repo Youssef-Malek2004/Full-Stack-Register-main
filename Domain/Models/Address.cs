@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace api.Models
+namespace Domain.Models
 {
     public class Address
     {

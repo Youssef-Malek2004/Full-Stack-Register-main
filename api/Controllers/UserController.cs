@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Commands;
 using api.Data;
 using api.DTOs.UserDTOs;
 using api.Mappers;
 using api.Models;
+using api.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -15,56 +18,50 @@ namespace api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
-        public UserController(ApplicationDBContext context)
+        private readonly IMediator _mediator;
+
+        public UserController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var users = _context.Users.ToList()
-            .Select(u => u.ToUserDTO()); //Select is just like the JS Map to map the users to the DTOs
-
+            var users = await _mediator.Send(new GetAllUsersQuery());
             return Ok(users);
         }
         [HttpGet("{id}")]
-        public IActionResult GetByID([FromRoute] int id)
+        public async Task<IActionResult> GetByID([FromRoute] int id)
         {
-            var user = _context.Users.Find(id);
+            var user = await _mediator.Send(new GetUserByIdQuery { UserId = id });
 
             if (user == null)
             {
-                return NotFound(null);
+                return NotFound();
             }
 
-            return Ok(user.ToUserDTO());
+            return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateUserRequestDTO UserDTO)
+        public async Task<IActionResult> Create([FromBody] CreateUserRequestDTO userDTO)
         {
-            var userModel = UserDTO.ToUserFromUserCreateDTO();
-
             try
             {
-                validateUserFields(userModel);
+                var createdUser = await _mediator.Send(new CreateUserCommand(userDTO));
+
+                return CreatedAtAction(nameof(GetByID), new { id = createdUser.Id }, createdUser);
             }
-            catch (ValidationException VException)
+            catch (ValidationException ex)
             {
                 var errorResponse = new
                 {
                     Message = "Validation failed",
-                    Errors = VException.Message  // This assumes ValidationErrors is a List<string> in ValidationException
+                    Errors = ex.Message
                 };
-
                 return BadRequest(errorResponse);
             }
-
-            _context.Users.Add(userModel);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetByID), new { id = userModel.Id }, userModel.ToUserDTO());
         }
 
         private string validateUserFields(User userModel)

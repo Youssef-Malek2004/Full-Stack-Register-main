@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Commands;
 using api.DTOs.UserDTOs;
 using api.Models;
 
@@ -23,8 +24,7 @@ namespace api.Mappers
                 // AddressList = userModel.AddressList,
             };
         }
-
-        public static User ToUserFromUserCreateDTO(this CreateUserRequestDTO userDTO)
+        public static User ToUserFromUserCreateDTO(this CreateUserCommand userDTO)
         {
             return new User
             {

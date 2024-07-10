@@ -15,6 +15,6 @@ namespace api.DTOs.UserDTOs
         public DateOnly BirthDate { get; set; }
         public string MobileNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public IList<Address> AddressList { get; set; } = [];
+        public IList<Address> AddressList { get; set; } = []; //MUST BE FIXED it doesnt take addressLists it takes the DTOS FINALLY GOT IT
     }
 }

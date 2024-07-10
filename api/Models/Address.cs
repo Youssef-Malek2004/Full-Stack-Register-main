@@ -9,7 +9,6 @@ namespace api.Models
 {
     public class Address
     {
-        [Required]
         public User? User { get; set; } //NavProperty for the User
 
         public int? UserID { get; set; }

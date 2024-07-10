@@ -8,7 +8,7 @@ using api.DTOs.UserDTOs;
 using MediatR;
 using api.Mappers;
 using System.ComponentModel.DataAnnotations;
-using api.Models;
+using Domain.Models;
 
 namespace api.CommandHandlers
 {

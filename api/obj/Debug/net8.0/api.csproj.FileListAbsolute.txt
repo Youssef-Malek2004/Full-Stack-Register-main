@@ -171,3 +171,5 @@ C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\obj\D
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\obj\Debug\net8.0\ref\api.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\MediatR.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\Domain.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\Domain.pdb

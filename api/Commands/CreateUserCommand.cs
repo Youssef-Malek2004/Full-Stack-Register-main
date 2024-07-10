@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.DTOs.UserDTOs;
-using api.Models;
+using Domain.Models;
 using MediatR;
 
 namespace api.Commands

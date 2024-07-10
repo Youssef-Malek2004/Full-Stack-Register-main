@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace api.Models
 {
     public class Address
     {
         [Required]
-        public required User User { get; set; }
+        public User? User { get; set; } //NavProperty for the User
+
+        public int? UserID { get; set; }
 
         public int Id { get; set; }
 

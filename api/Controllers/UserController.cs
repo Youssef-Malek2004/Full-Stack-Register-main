@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Commands;
+using Application.Commands;
 using Persistence.Data;
-using api.DTOs.UserDTOs;
-using api.Mappers;
+using Application.DTOs.UserDTOs;
+using Application.Mappers;
 using Domain.Models;
-using api.Queries;
+using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

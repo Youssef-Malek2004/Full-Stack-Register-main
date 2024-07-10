@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.DTOs.UserDTOs;
+using Application.DTOs.UserDTOs;
 using MediatR;
 
-namespace api.Queries
+namespace Application.Queries
 {
     public class GetAllUsersQuery : IRequest<List<UserDTO>>
     {

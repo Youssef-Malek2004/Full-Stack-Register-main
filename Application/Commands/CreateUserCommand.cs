@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.DTOs.UserDTOs;
+using Application.DTOs.UserDTOs;
 using Domain.Models;
 using MediatR;
 
-namespace api.Commands
+namespace Application.Commands
 {
     public class CreateUserCommand : IRequest<UserDTO>
     {

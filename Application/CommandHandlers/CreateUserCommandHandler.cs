@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Commands;
+using Application.Commands;
 using Persistence.Data;
-using api.DTOs.UserDTOs;
+using Application.DTOs.UserDTOs;
 using MediatR;
-using api.Mappers;
+using Application.Mappers;
 using System.ComponentModel.DataAnnotations;
 using Domain.Models;
 
-namespace api.CommandHandlers
+namespace Application.CommandHandlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDTO>
     {

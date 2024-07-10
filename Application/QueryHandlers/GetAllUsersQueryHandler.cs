@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Persistence.Data;
-using api.DTOs.UserDTOs;
-using api.Mappers;
-using api.Queries;
+using Application.DTOs.UserDTOs;
+using Application.Mappers;
+using Application.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.QueryHandlers
+namespace Application.QueryHandlers
 {
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserDTO>>
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Models;
 
-namespace api.DTOs.UserDTOs
+namespace Application.DTOs.UserDTOs
 {
     public class UserDTO
     {

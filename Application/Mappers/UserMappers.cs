@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Commands;
-using api.DTOs.UserDTOs;
+using Application.Commands;
+using Application.DTOs.UserDTOs;
 using Domain.Models;
 
-namespace api.Mappers
+namespace Application.Mappers
 {
     public static class UserMappers
     {

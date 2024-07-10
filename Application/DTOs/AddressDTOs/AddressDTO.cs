@@ -1,34 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-namespace Domain.Models
+namespace Application.DTOs.AddressDTOs
 {
-    public class Address
+    public class AddressDTO
     {
-        public User? User { get; set; } //NavProperty for the User
-
-        public int Id { get; set; }
-
         public int? UserID { get; set; }
-
-        [Required]
+        public int Id { get; set; }
         public string Governate { get; set; } = string.Empty;
-
-        [Required]
         public string City { get; set; } = string.Empty;
-
-        [Required]
-        [MaxLength(200)]
         public string Street { get; set; } = string.Empty;
-
-        [Required]
         public string BuildingNum { get; set; } = string.Empty;
-
-        [Required]
         public int FlatNum { get; set; }
     }
 }

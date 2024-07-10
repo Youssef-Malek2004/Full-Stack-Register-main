@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs.AddressDTOs;
 using Application.DTOs.UserDTOs;
 using Domain.Models;
 using MediatR;
@@ -16,7 +17,7 @@ namespace Application.Commands
         public DateOnly BirthDate { get; set; }
         public string MobileNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public IList<Address> AddressList { get; set; } = [];
+        public IList<CreateAddressRequestDTO> AddressList { get; set; } = []; //List of DTOS
 
         // We have a constructor to pass the data immediately from the CreateUserRequestDTO in the Controller + no need to make the controller look ugly
         public CreateUserCommand(CreateUserRequestDTO userDTO)

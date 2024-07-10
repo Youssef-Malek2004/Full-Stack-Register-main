@@ -26,7 +26,7 @@ namespace Application.Mappers
         }
         public static User ToUserFromUserCreateDTO(this CreateUserCommand userDTO)
         {
-            return new User
+            User tempUser = new User
             {
                 FirstName = userDTO.FirstName,
                 MiddleName = userDTO.MiddleName,
@@ -34,8 +34,9 @@ namespace Application.Mappers
                 BirthDate = userDTO.BirthDate,
                 MobileNumber = userDTO.MobileNumber,
                 Email = userDTO.Email,
-                AddressList = userDTO.AddressList,
             };
+            tempUser.AddressList = userDTO.AddressList.Select(a => a.ToAddressFromAddressCreateDTO(tempUser)).ToList();
+            return tempUser;
         }
     }
 }

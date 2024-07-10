@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Data;
+using Persistence.Data;
 using api.DTOs.UserDTOs;
 using api.Mappers;
 using api.Queries;

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Commands;
-using api.Data;
+using Persistence.Data;
 using api.DTOs.UserDTOs;
 using api.Mappers;
 using Domain.Models;

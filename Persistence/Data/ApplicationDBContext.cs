@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Data
+namespace Persistence.Data
 {
     public class ApplicationDBContext : DbContext
     {

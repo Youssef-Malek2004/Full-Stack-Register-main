@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Commands;
-using api.Data;
+using Persistence.Data;
 using api.DTOs.UserDTOs;
 using MediatR;
 using api.Mappers;

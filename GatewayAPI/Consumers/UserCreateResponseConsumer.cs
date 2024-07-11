@@ -18,27 +18,35 @@ namespace GatewayAPI.Consumers
 
         public async Task Consume(ConsumeContext<UserCreateResponseEvent> context)
         {
+
             var responseEvent = context.Message;
 
-            if (_responseTasks.TryGetValue(responseEvent.CorrelationId, out var tcs))
+            while (true) //I dont know how to fix this for now -> Trying to get value that isnt there and then not consuming it ASK about it
             {
-                if (responseEvent.IsSuccess)
+                if (_responseTasks.TryGetValue(responseEvent.CorrelationId, out var tcs))
                 {
-                    tcs.SetResult(responseEvent.UserModelDTO);
-                }
-                else
-                {
-                    tcs.SetException(new Exception($"User creation failed: {responseEvent.ErrorModelDTO.Errors}"));
-                }
+                    if (responseEvent.IsSuccess)
+                    {
+                        tcs.SetResult(responseEvent.UserModelDTO);
+                    }
+                    else
+                    {
+                        tcs.SetException(new Exception($"User creation failed: {responseEvent.ErrorModelDTO.Errors}"));
+                    }
 
-                _responseTasks.Remove(responseEvent.CorrelationId);
+                    _responseTasks.Remove(responseEvent.CorrelationId);
+                    break;
+                }
             }
         }
 
         public Task<UserDTO> WaitForResponse(Guid correlationId)
         {
             var tcs = new TaskCompletionSource<UserDTO>();
-            _responseTasks.Add(correlationId, tcs);
+            lock (_responseTasks)
+            {
+                _responseTasks.Add(correlationId, tcs);
+            }
             return tcs.Task;
         }
     }

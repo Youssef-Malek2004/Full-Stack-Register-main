@@ -1,46 +1,19 @@
 using System.Net.Http;
 using System.Net.Http.Json;
+using Application.Contracts;
 using Application.DTOs.UserDTOs;
+using GatewayAPI.Consumers;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
+
 var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
-
-app.MapPost("/register", async (HttpRequest request, HttpResponse response) =>
-{
-    using var httpClient = new HttpClient();
-
-    // Read the incoming JSON request body
-    var incomingData = await request.ReadFromJsonAsync<CreateUserRequestDTO>();
-
-    // Post the data to the target API
-    var targetResponse = await httpClient.PostAsJsonAsync("http://localhost:5144/api/user", incomingData);
-
-    response.StatusCode = (int)targetResponse.StatusCode;
-
-    if (targetResponse.IsSuccessStatusCode)
-    {
-        // Read the response content from the target API
-        var responseData = await targetResponse.Content.ReadFromJsonAsync<UserDTO>();
-
-        // Return the response content back to the frontend
-        await response.WriteAsJsonAsync(responseData);
-    }
-    else
-    {
-        // Read the error response content from the target API
-        var errorResponse = await targetResponse.Content.ReadFromJsonAsync<errorResponse>();
-
-        // Return the error response content back to the frontend
-        await response.WriteAsJsonAsync(errorResponse);
-    }
-});
 
 builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+    busConfigurator.AddConsumer<UserCreateResponseConsumer>();
 
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {
@@ -54,11 +27,41 @@ builder.Services.AddMassTransit(busConfigurator =>
     });
 });
 
+builder.Services.AddSingleton<UserCreateResponseConsumer>();
+
+var app = builder.Build();
+
+app.MapPost("/register", async (HttpRequest request, HttpResponse response, IPublishEndpoint _publishEndpoint, UserCreateResponseConsumer responseConsumer) =>
+{
+    using var httpClient = new HttpClient();
+
+    // Read the incoming JSON request body
+    var incomingData = await request.ReadFromJsonAsync<CreateUserRequestDTO>();
+
+    var correlationId = Guid.NewGuid();
+
+    await _publishEndpoint.Publish(new UserCreateEvent
+    {
+        CorrelationId = correlationId,
+        UserModelDTO = incomingData
+    });
+
+    try
+    {
+        // Wait for the response with the matching correlation ID
+        var responseData = await responseConsumer.WaitForResponse(correlationId);
+
+        // Return the response data to the client
+        await response.WriteAsJsonAsync(responseData);
+    }
+    catch (Exception ex)
+    {
+        // Handle any errors
+        var errorResponse = new { Message = "Failed to create user", Error = ex.Message };
+        await response.WriteAsJsonAsync(errorResponse);
+    }
+});
+
 app.Run();
 
 // Models for deserializing JSON
-class errorResponse
-{
-    public string Message { get; set; } = String.Empty;
-    public string Errors { get; set; } = String.Empty;
-}

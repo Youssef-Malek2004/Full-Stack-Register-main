@@ -11,6 +11,8 @@ using Domain.Models;
 using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MassTransit;
+using Application.Contracts;
 
 namespace api.Controllers
 {
@@ -19,10 +21,12 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public UserController(IMediator mediator)
+        public UserController(IMediator mediator, IPublishEndpoint publishEndpoint)
         {
             _mediator = mediator;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -51,15 +55,33 @@ namespace api.Controllers
             {
                 var createdUser = await _mediator.Send(new CreateUserCommand(userDTO));
 
+                await _publishEndpoint.Publish(new UserCreateResponseEvent
+                {
+                    UserModelDTO = createdUser,
+                    ErrorModelDTO = new ErrorResponseDTO
+                    {
+                        Message = "",
+                        Errors = ""
+                    }
+                });
+
                 return CreatedAtAction(nameof(GetByID), new { id = createdUser.Id }, createdUser);
             }
             catch (ValidationException ex)
             {
-                var errorResponse = new
+
+                var errorResponse = new ErrorResponseDTO
                 {
                     Message = "Validation failed",
                     Errors = ex.Message
                 };
+
+                await _publishEndpoint.Publish(new UserCreateResponseEvent
+                {
+                    UserModelDTO = null,
+                    ErrorModelDTO = errorResponse
+                });
+
                 return BadRequest(errorResponse);
             }
         }
@@ -67,7 +89,7 @@ namespace api.Controllers
         private string validateUserFields(User userModel)
         {
             var validationContext = new ValidationContext(userModel);
-            var validationResults = new List<ValidationResult>();
+            var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
             bool isValid = Validator.TryValidateObject(userModel, validationContext, validationResults, true);
 
             if (!isValid)

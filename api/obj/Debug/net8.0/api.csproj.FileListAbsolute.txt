@@ -177,3 +177,7 @@ C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\D
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\Persistence.pdb
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\Application.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\Application.pdb
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\MassTransit.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\MassTransit.Abstractions.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\api\bin\Debug\net8.0\RabbitMQ.Client.dll

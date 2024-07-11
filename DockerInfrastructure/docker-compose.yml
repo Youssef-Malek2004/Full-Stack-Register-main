@@ -1,0 +1,11 @@
+version: "3.13.4"
+services:
+  rabbitmq3:
+    container_name: "rabbitmq3"
+    image: rabbitmq:3.13.4-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"
+      - "15672:15672"

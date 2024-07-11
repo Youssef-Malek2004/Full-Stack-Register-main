@@ -4683,11 +4683,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\api.csproj",
+      "projectUniqueName": "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\api.csproj",
+      "projectPath": "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\api.csproj",
       "packagesPath": "C:\\Users\\youss\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\obj\\",
+      "outputPath": "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4712,8 +4712,8 @@
             "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Application\\Application.csproj": {
               "projectPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Application\\Application.csproj"
             },
-            "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj"
+            "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj"
             },
             "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Persistence\\Persistence.csproj": {
               "projectPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Persistence\\Persistence.csproj"

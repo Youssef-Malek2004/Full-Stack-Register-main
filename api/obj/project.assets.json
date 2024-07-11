@@ -5042,6 +5042,7 @@
     "net8.0": [
       "Application >= 1.0.0",
       "Domain >= 1.0.0",
+      "MassTransit >= 8.2.3",
       "MediatR >= 12.3.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
@@ -5111,6 +5112,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "MassTransit": {
+            "target": "Package",
+            "version": "[8.2.3, )"
+          },
           "MediatR": {
             "target": "Package",
             "version": "[12.3.0, )"

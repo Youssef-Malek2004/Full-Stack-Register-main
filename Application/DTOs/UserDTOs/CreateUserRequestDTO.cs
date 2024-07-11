@@ -17,5 +17,10 @@ namespace Application.DTOs.UserDTOs
         public string MobileNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public IList<CreateAddressRequestDTO> AddressList { get; set; } = []; //MUST BE FIXED it doesnt take addressLists it takes the DTOS FINALLY GOT IT
+
+        public CreateUserRequestDTO()
+        {
+
+        }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5553FEDC-F46A-413E-966C-D2D5232F7DC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayAPI", "GatewayAPI\GatewayAPI.csproj", "{15D7CB63-FD66-42D1-AF96-CE790959E15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5553FEDC-F46A-413E-966C-D2D5232F7DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5553FEDC-F46A-413E-966C-D2D5232F7DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5553FEDC-F46A-413E-966C-D2D5232F7DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D7CB63-FD66-42D1-AF96-CE790959E15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D7CB63-FD66-42D1-AF96-CE790959E15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D7CB63-FD66-42D1-AF96-CE790959E15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D7CB63-FD66-42D1-AF96-CE790959E15B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

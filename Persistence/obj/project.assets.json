@@ -2861,8 +2861,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj"
+            "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\youss\\Desktop\\CollegeWork\\Assessment\\Full-Stack-Register-main\\Domain\\Domain.csproj"
             }
           }
         }

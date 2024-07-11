@@ -12,5 +12,10 @@ namespace Application.DTOs.AddressDTOs
         public string Street { get; set; } = string.Empty;
         public string BuildingNum { get; set; } = string.Empty;
         public int FlatNum { get; set; }
+
+        public CreateAddressRequestDTO()
+        {
+
+        }
     }
 }

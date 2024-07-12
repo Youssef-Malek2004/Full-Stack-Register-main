@@ -15,8 +15,8 @@ namespace Application.Mappers
             {
                 Id = addressModel.Id,
                 UserID = addressModel.UserID,
-                Governate = addressModel.Governate,
-                City = addressModel.City,
+                GovernateID = addressModel.GovernateID,
+                CityID = addressModel.CityID,
                 Street = addressModel.Street,
                 BuildingNum = addressModel.BuildingNum,
                 FlatNum = addressModel.FlatNum,
@@ -27,8 +27,8 @@ namespace Application.Mappers
             return new Address
             {
                 User = user,
-                Governate = addressModel.Governate,
-                City = addressModel.City,
+                GovernateID = addressModel.Governate,
+                CityID = addressModel.City,
                 Street = addressModel.Street,
                 BuildingNum = addressModel.BuildingNum,
                 FlatNum = addressModel.FlatNum,

@@ -50,6 +50,21 @@ namespace api.Consumers
                     ErrorModelDTO = errorResponse
                 });
             }
+            catch (Exception ex)
+            {
+                var errorResponse = new ErrorResponseDTO
+                {
+                    Message = "User Creation failed",
+                    Errors = ex.Message
+                };
+                await _publishEndpoint.Publish(new UserCreateResponseEvent
+                {
+                    CorrelationId = context.Message.CorrelationId,
+                    IsSuccess = false,
+                    UserModelDTO = null,
+                    ErrorModelDTO = errorResponse
+                });
+            }
         }
     }
 }

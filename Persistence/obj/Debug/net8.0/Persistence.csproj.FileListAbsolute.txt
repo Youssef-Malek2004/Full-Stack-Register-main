@@ -14,3 +14,5 @@ C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persisten
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persistence\obj\Debug\net8.0\refint\Persistence.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persistence\obj\Debug\net8.0\Persistence.pdb
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persistence\obj\Debug\net8.0\ref\Persistence.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persistence\bin\Debug\net8.0\Persistence.runtimeconfig.json
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\Persistence\obj\Debug\net8.0\Persistence.genruntimeconfig.cache

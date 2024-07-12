@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Contracts;
 using Application.DTOs.UserDTOs;
+using Application.Exceptions;
 using MassTransit;
 
 namespace GatewayAPI.Consumers
 {
     public class UserCreateResponseConsumer : IConsumer<UserCreateResponseEvent>
     {
-        private readonly Dictionary<Guid, TaskCompletionSource<UserDTO>> _responseTasks;
+        private readonly Dictionary<Guid, TaskCompletionSource<TCSDTO>> _responseTasks;
 
-        public UserCreateResponseConsumer()
+        public UserCreateResponseConsumer(Dictionary<Guid, TaskCompletionSource<TCSDTO>> responseTasks)
         {
-            _responseTasks = new Dictionary<Guid, TaskCompletionSource<UserDTO>>();
+            _responseTasks = responseTasks;
         }
 
         public async Task Consume(ConsumeContext<UserCreateResponseEvent> context)
@@ -21,33 +22,22 @@ namespace GatewayAPI.Consumers
 
             var responseEvent = context.Message;
 
-            while (true) //I dont know how to fix this for now -> Trying to get value that isnt there and then not consuming it ASK about it
+            if (_responseTasks.TryGetValue(responseEvent.CorrelationId, out var tcs))
             {
-                if (_responseTasks.TryGetValue(responseEvent.CorrelationId, out var tcs))
+                if (responseEvent.IsSuccess)
                 {
-                    if (responseEvent.IsSuccess)
+                    tcs.SetResult(new TCSDTO
                     {
-                        tcs.SetResult(responseEvent.UserModelDTO);
-                    }
-                    else
-                    {
-                        tcs.SetException(new Exception($"User creation failed: {responseEvent.ErrorModelDTO.Errors}"));
-                    }
-
-                    _responseTasks.Remove(responseEvent.CorrelationId);
-                    break;
+                        CorrelationID = responseEvent.CorrelationId,
+                        UserDTO = responseEvent.UserModelDTO,
+                        ErrorResponseDTO = responseEvent.ErrorModelDTO
+                    });
+                }
+                else
+                {
+                    tcs.SetException(new UserCreationException($"User creation failed: {responseEvent.ErrorModelDTO.Errors}", responseEvent.ErrorModelDTO));
                 }
             }
-        }
-
-        public Task<UserDTO> WaitForResponse(Guid correlationId)
-        {
-            var tcs = new TaskCompletionSource<UserDTO>();
-            lock (_responseTasks)
-            {
-                _responseTasks.Add(correlationId, tcs);
-            }
-            return tcs.Task;
         }
     }
 }

@@ -10,16 +10,18 @@ namespace Domain.Models
     public class Address
     {
         public User? User { get; set; } //NavProperty for the User
+        public Governate? Governate { get; set; }
+        public City? City { get; set; }
 
         public int Id { get; set; }
 
         public int? UserID { get; set; }
 
         [Required]
-        public string Governate { get; set; } = string.Empty;
+        public string GovernateID { get; set; } = string.Empty;
 
         [Required]
-        public string City { get; set; } = string.Empty;
+        public string CityID { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(200)]

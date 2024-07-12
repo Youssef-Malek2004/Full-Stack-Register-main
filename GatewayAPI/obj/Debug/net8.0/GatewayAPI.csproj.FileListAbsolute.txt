@@ -76,3 +76,8 @@ C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAP
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\MassTransit.Abstractions.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
 C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\obj\Debug\net8.0\GatewayAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\youss\Desktop\CollegeWork\Assessment\Full-Stack-Register-main\GatewayAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -9,6 +9,7 @@ using MediatR;
 using Application.Mappers;
 using System.ComponentModel.DataAnnotations;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.CommandHandlers
 {
@@ -20,14 +21,47 @@ namespace Application.CommandHandlers
         {
             _context = context;
         }
+        // public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        // {
+        //     var userModel = request.ToUserFromUserCreateDTO();
+        //     await validateUserFields(userModel);
+        //     _context.Users.Add(userModel);
+        //     await _context.SaveChangesAsync();
+        //     return userModel.ToUserDTO();
+
+        // }
+
         public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var userModel = request.ToUserFromUserCreateDTO();
-            await validateUserFields(userModel);
-            _context.Users.Add(userModel);
-            await _context.SaveChangesAsync();
-            return userModel.ToUserDTO();
 
+            // Validate user fields
+            await validateUserFields(userModel);
+
+            await ValidateAddressFields(userModel, cancellationToken);
+
+            // Add the user to the database
+            _context.Users.Add(userModel);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return userModel.ToUserDTO();
+        }
+
+        private async Task ValidateAddressFields(User userModel, CancellationToken cancellationToken)
+        {
+            foreach (var address in userModel.AddressList)
+            {
+                var city = await _context.Cities.FindAsync([address.CityID], cancellationToken: cancellationToken) ?? throw new Exception($"The specified city with ID {address.CityID} does not exist.");
+
+
+                _context.Entry(city).State = EntityState.Unchanged;
+                address.City = city;
+
+                // Check and attach the existing governate if necessary
+                var governate = await _context.Governates.FindAsync([address.GovernateID], cancellationToken: cancellationToken) ?? throw new Exception($"The specified Governate with ID {address.GovernateID} does not exist.");
+                _context.Entry(governate).State = EntityState.Unchanged;
+                address.Governate = governate;
+            }
         }
 
         private async Task validateUserFields(User userModel)

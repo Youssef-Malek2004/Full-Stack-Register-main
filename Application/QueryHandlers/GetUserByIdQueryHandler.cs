@@ -7,23 +7,20 @@ using Application.DTOs.UserDTOs;
 using Application.Mappers;
 using Application.Queries;
 using MediatR;
+using AutoMapper;
 
 namespace Application.QueryHandlers
 {
-    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDTO>
+    public class GetUserByIdQueryHandler(ApplicationDBContext context, IMapper mapper) : IRequestHandler<GetUserByIdQuery, UserDTO>
     {
-        private readonly ApplicationDBContext _context;
-
-        public GetUserByIdQueryHandler(ApplicationDBContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDBContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<UserDTO> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FindAsync([request.UserId], cancellationToken: cancellationToken);
 
-            return user.ToUserDTO();
+            return _mapper.Map<UserDTO>(user);
         }
     }
 }

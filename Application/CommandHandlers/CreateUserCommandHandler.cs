@@ -10,17 +10,15 @@ using Application.Mappers;
 using System.ComponentModel.DataAnnotations;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Application.CommandHandlers
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDTO>
+    public class CreateUserCommandHandler(ApplicationDBContext context, IMapper mapper) : IRequestHandler<CreateUserCommand, UserDTO>
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
-        public CreateUserCommandHandler(ApplicationDBContext context)
-        {
-            _context = context;
-        }
         // public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         // {
         //     var userModel = request.ToUserFromUserCreateDTO();
@@ -33,7 +31,7 @@ namespace Application.CommandHandlers
 
         public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var userModel = request.ToUserFromUserCreateDTO();
+            var userModel = _mapper.Map<User>(request);
 
             // Validate user fields
             await validateUserFields(userModel);
@@ -63,7 +61,7 @@ namespace Application.CommandHandlers
             _context.Users.Add(userModel);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return userModel.ToUserDTO();
+            return _mapper.Map<UserDTO>(userModel);
         }
 
         private async Task ValidateAddressFields(User userModel, CancellationToken cancellationToken)

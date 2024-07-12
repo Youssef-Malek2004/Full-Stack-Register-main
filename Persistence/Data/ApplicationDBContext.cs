@@ -19,5 +19,6 @@ namespace Persistence.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Governate> Governates { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<GovernateUserCount> GovernateUserCounts { get; set; }
     }
 }

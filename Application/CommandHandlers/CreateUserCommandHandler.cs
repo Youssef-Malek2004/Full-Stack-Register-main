@@ -40,6 +40,25 @@ namespace Application.CommandHandlers
 
             await ValidateAddressFields(userModel, cancellationToken);
 
+            foreach (var address in userModel.AddressList)
+            {
+                var governateUserCount = await _context.GovernateUserCounts.FindAsync(address.GovernateID);
+                if (governateUserCount == null)
+                {
+                    governateUserCount = new GovernateUserCount
+                    {
+                        GovernateID = address.GovernateID,
+                        UserCount = 1
+                    };
+                    _context.GovernateUserCounts.Add(governateUserCount);
+                }
+                else
+                {
+                    governateUserCount.UserCount += 1;
+                    _context.GovernateUserCounts.Update(governateUserCount);
+                }
+            }
+
             // Add the user to the database
             _context.Users.Add(userModel);
             await _context.SaveChangesAsync(cancellationToken);

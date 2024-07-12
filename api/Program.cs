@@ -28,6 +28,8 @@ builder.Services.AddMassTransit(busConfigurator =>
 
     busConfigurator.AddConsumer<UserCreateEventConsumer>();
 
+    busConfigurator.AddConsumer<LookUpGetEventConsumer>();
+
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), h =>

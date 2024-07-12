@@ -81,7 +81,7 @@ app.MapGet("/register", async (HttpRequest request, HttpResponse response, Dicti
     if (!request.Query.TryGetValue("correlationId", out var correlationIdValue) || !Guid.TryParse(correlationIdValue, out var correlationId))
     {
         response.StatusCode = StatusCodes.Status400BadRequest;
-        await response.WriteAsync("CorrelationId query parameter is missing or invalid.");
+        await response.WriteAsJsonAsync("CorrelationId query parameter is missing or invalid.");
         return;
     }
 
@@ -127,13 +127,13 @@ app.MapGet("/register", async (HttpRequest request, HttpResponse response, Dicti
         }
         else
         {
-            await response.WriteAsync("Task is still pending.");
+            await response.WriteAsJsonAsync("Task is still pending.");
         }
     }
     else
     {
         response.StatusCode = StatusCodes.Status404NotFound;
-        await response.WriteAsync($"Task with correlationId '{correlationId}' not found.");
+        await response.WriteAsJsonAsync($"Task with correlationId '{correlationId}' not found.");
     }
 });
 app.UseCors("AllowAll");
